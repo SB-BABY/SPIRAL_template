@@ -1,0 +1,134 @@
+// BUTTON
+.button {
+	@include flex-center(true);
+
+	height: var(--button-height);
+	padding-inline: 35px;
+	font-size: 20px;
+	color: var(--color-light);
+	background-color: var(--color-dark);
+	border: var(--border);
+	border-radius: var(--border-radius-small);
+	border-color: var(--color-dark);
+
+	@include hover {
+		// color: var(--color-light);
+		background-color: var(--color-gray);
+	}
+
+	&--transparent {
+		color: var(--color-dark);
+		background-color: transparent;
+	}
+
+	&--accent {
+		color: var(--color-dark);
+		background-color: var(--color-accent);
+
+		@include hover {
+			color: var(--color-accent);
+			background-color: var(--color-dark);
+		}
+	}
+}
+// BUTTON
+
+// BUTTON-SMALL
+.button-small {
+	@include flex-center(true);
+
+	height: var(--button-height-small);
+	padding-inline: 35px;
+	font-size: 16px;
+	color: var(--color-accent);
+	background-color: var(--color-accent-light);
+	border: var(--border);
+	border-radius: var(--border-radius);
+	border-color: var(--color-accent);
+
+	@include hover {
+		color: var(--color-light);
+		background-color: var(--color-accent);
+	}
+
+	&--transparent {
+		color: var(--color-dark);
+		background-color: transparent;
+	}
+
+	&--accent {
+		color: var(--color-dark);
+		background-color: var(--color-accent);
+
+		@include hover {
+			color: var(--color-accent);
+			background-color: var(--color-dark);
+		}
+	}
+}
+// BUTTON-SMALL
+
+
+// BURGER BUTTON
+.burger-button {
+	@include reset-button;
+	@include square(48px);
+
+	position: relative;
+	border-radius: var(--border-radius-small);
+
+	@include hover {
+		background-color: var(--color-accent);
+		color: #fff;
+	}
+
+	&::after {
+		@include abs-center;
+
+		content: "";
+		width: 50%;
+		height: 2px;
+		background-color: var(--color-dark);
+		border-radius: 5px;
+		box-shadow:
+			0 -8px,
+			0 8px;
+	}
+}
+// BURGER BUTTON
+
+//CROSS BUTTON
+.cross-button {
+	@include reset-button;
+	@include square(48px);
+
+	position: relative;
+	border-radius: var(--border-radius-small);
+
+	@include hover {
+		background-color: var(--color-accent);
+		
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 7px;
+		width: 70%;
+		height: 2px;
+		background-color: var(--color-dark);
+		border-radius: 5px;
+		
+	}
+
+	&::before {
+		rotate: 45deg;
+	}
+
+	&::after {
+		rotate: -45deg;
+	}
+}
+//CROSS BUTTON

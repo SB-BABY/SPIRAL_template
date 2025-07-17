@@ -1,0 +1,25 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+
+    &__content {
+        background: white;
+        width: 90%;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    &__close {
+        float: right;
+        cursor: pointer;
+        font-size: 24px;
+    }
+}
