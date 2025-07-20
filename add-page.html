@@ -14,7 +14,7 @@
     <header class="header">
       <div class="header__container">
         <a href="index.html" class="header__logo">
-          <img src="./img/logo-full.png" alt="IT-студия Спираль" />
+          <img src="./img/logo-full-bold.png" alt="IT-студия Спираль" />
         </a>
 
         <nav class="header__nav header__nav--desktop">
@@ -37,8 +37,18 @@
         <a href="/promotion" class="header__nav-item">ПРОДВИЖЕНИЕ</a>
         <a href="/reconstruction" class="header__nav-item">РЕКОНСТРУКЦИЯ</a>
         <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
-        <a href="/contacts" class="header__nav-item">КОНТАКТЫ</a>
+        <a href="/contact.html" class="header__nav-item">КОНТАКТЫ</a>
       </nav>
+
+      <!-- блок переключени темы -->
+      <div class="theme-switcher">
+        <button class="theme-switcher__btn" data-theme="gray">Серый</button>
+        <button class="theme-switcher__btn" data-theme="coffee">Кофе</button>
+        <button class="theme-switcher__btn" data-theme="red">Красный</button>
+        <button class="theme-switcher__btn" data-theme="graphite">
+          Графит
+        </button>
+      </div>
     </header>
 
     <div class="layout">
@@ -91,7 +101,7 @@
 
       <main class="main">
         <!-- Hero Section -->
-        <section class="service-hero">
+        <!-- <section class="service-hero">
           <div class="service-hero__overlay"></div>
           <div class="service-hero__content">
             <h1 class="service-hero__title">ДОБАВЛЕНИЕ СТРАНИЦ НА САЙТ</h1>
@@ -101,10 +111,28 @@
             </p>
             <button class="service-hero__button" >ЗАКАЗАТЬ УСЛУГУ</button>
           </div>
+        </section> -->
+        <!-- Упрощенная секция только с изображением -->
+        <section class="banner-section">
+          <img
+            src="/img/add-page/1.jpg"
+            alt="Добавление страниц на сайт"
+            class="banner-section__image"
+            loading="lazy"
+          />
         </section>
 
         <div class="service-page-container">
           <div class="service-content">
+            <!-- Single Banner Block -->
+            <!-- <div class="banner-block">
+              <img
+                src="/img/add-page/1.jpg"
+                alt="Рекламный баннер"
+                class="banner-block__image"
+                loading="lazy"
+              />
+            </div> -->
             <!-- Service Description -->
             <section class="service-section">
               <h2 class="service-section__title">

@@ -14,7 +14,7 @@
     <header class="header">
       <div class="header__container">
         <a href="index.html" class="header__logo">
-          <img src="./img/logo-full.png" alt="IT-студия Спираль" />
+          <img src="./img/logo-full-bold.png" alt="IT-студия Спираль" />
         </a>
 
         <nav class="header__nav header__nav--desktop">
@@ -37,8 +37,18 @@
         <a href="/promotion" class="header__nav-item">ПРОДВИЖЕНИЕ</a>
         <a href="/reconstruction" class="header__nav-item">РЕКОНСТРУКЦИЯ</a>
         <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
-        <a href="/contacts" class="header__nav-item">КОНТАКТЫ</a>
+        <a href="/contact.html" class="header__nav-item">КОНТАКТЫ</a>
       </nav>
+
+      <!-- блок переключени темы -->
+      <div class="theme-switcher">
+        <button class="theme-switcher__btn" data-theme="gray">Серый</button>
+        <button class="theme-switcher__btn" data-theme="coffee">Кофе</button>
+        <button class="theme-switcher__btn" data-theme="red">Красный</button>
+        <button class="theme-switcher__btn" data-theme="graphite">
+          Графит
+        </button>
+      </div>
     </header>
 
     <div class="layout">
@@ -99,12 +109,24 @@
               Профессиональная настройка контекстной рекламы для максимального
               привлечения клиентов
             </p>
-            <button class="service-hero__button" data-modal-open>ЗАКАЗАТЬ НАСТРОЙКУ</button>
+            <button class="service-hero__button" data-modal-open>
+              ЗАКАЗАТЬ НАСТРОЙКУ
+            </button>
           </div>
         </section>
 
         <div class="service-page-container">
           <div class="service-content">
+            <!-- Single Banner Block -->
+            <div class="banner-block">
+              <img
+                src="/img/ya-direct/1.jpg"
+                alt="Рекламный баннер"
+                class="banner-block__image"
+                loading="lazy"
+              />
+            </div>
+
             <!-- Service Description -->
             <section class="service-section">
               <h2 class="service-section__title">Что такое Яндекс.Директ?</h2>
@@ -249,15 +271,24 @@
 
             <!-- RESULT -->
             <section class="service-section">
-              <h2 class="service-section__title">
-                Результаты работы
-              </h2>
+              <h2 class="service-section__title">Результаты работы</h2>
               <div class="service-section__content">
                 <p>
-                  По результатам работы, наши специалисты предоставят отчет о количестве пользователей, перешедших на Ваш сайт именно благодаря этому сервису. Вы сможете в том числе отслеживать сведения какие товары и услуги больше всего пользовались спросом в текущем месяце а также что больше всего интересовало (страницы) на вашем сайте. 
+                  По результатам работы, наши специалисты предоставят отчет о
+                  количестве пользователей, перешедших на Ваш сайт именно
+                  благодаря этому сервису. Вы сможете в том числе отслеживать
+                  сведения какие товары и услуги больше всего пользовались
+                  спросом в текущем месяце а также что больше всего интересовало
+                  (страницы) на вашем сайте.
                 </p>
                 <p>
-                  Настройка Яндекс директа пожалуй самое эффективное средство которое за деньги позволяет сразу привести пользователей на Ваш сайт сразу после размещения его в поисковой выдаче, т.е тут ждать 3-4-6 месяцев нет необходимости, подготовим рекламу, сформируем все позиции, осуществив настройку и оптимизацию и Вы сразу* получите клиентов на Ваш сайт (при условии что Ваша услуга и товар пользуются спросом). 
+                  Настройка Яндекс директа пожалуй самое эффективное средство
+                  которое за деньги позволяет сразу привести пользователей на
+                  Ваш сайт сразу после размещения его в поисковой выдаче, т.е
+                  тут ждать 3-4-6 месяцев нет необходимости, подготовим рекламу,
+                  сформируем все позиции, осуществив настройку и оптимизацию и
+                  Вы сразу* получите клиентов на Ваш сайт (при условии что Ваша
+                  услуга и товар пользуются спросом).
                 </p>
               </div>
             </section>

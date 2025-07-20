@@ -16,7 +16,7 @@
         <a href="index.html" class="header__logo">
           <!-- <span class="header__logo-text">Спираль</span>
         <span class="header__logo-slogan">«На грани перемен»</span> -->
-          <img src="./img/logo-full.png" alt="" />
+          <img src="./img/logo-full-bold.png" alt="" />
         </a>
 
         <nav class="header__nav header__nav--desktop">
@@ -25,7 +25,7 @@
           <a href="/promotion" class="header__nav-item">ПРОДВИЖЕНИЕ</a>
           <a href="/reconstruction" class="header__nav-item">РЕКОНСТРУКЦИЯ</a>
           <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
-          <a href="/contacts" class="header__nav-item">КОНТАКТЫ</a>
+          <a href="/contact.html" class="header__nav-item">КОНТАКТЫ</a>
         </nav>
 
         <button class="header__menu-button">
@@ -41,6 +41,16 @@
         <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
         <a href="/contacts" class="header__nav-item">КОНТАКТЫ</a>
       </nav>
+
+      <!-- блок переключени темы -->
+      <div class="theme-switcher">
+        <button class="theme-switcher__btn" data-theme="gray">Серый</button>
+        <button class="theme-switcher__btn" data-theme="coffee">Кофе</button>
+        <button class="theme-switcher__btn" data-theme="red">Красный</button>
+        <button class="theme-switcher__btn" data-theme="graphite">
+          Графит
+        </button>
+      </div>
     </header>
 
     <div class="layout">
@@ -93,7 +103,7 @@
 
       <main class="main">
         <section class="hero">
-          <div class="hero__overlay"></div>
+          <!-- <div class="hero__overlay"></div> -->
           <div class="hero__content">
             <h1 class="hero__title">IT-студия «Спираль»</h1>
             <p class="hero__subtitle">«На грани перемен»</p>
@@ -103,8 +113,11 @@
               которые работают на ваш бизнес.
             </p>
             <div class="hero__buttons">
-              <a href="/contacts" class="hero__button hero__button--primary"
-                data-modal-open >ЗАКАЗАТЬ ПРОЕКТ</a
+              <a
+                href="/contacts"
+                class="hero__button hero__button--primary"
+                data-modal-open
+                >ЗАКАЗАТЬ ПРОЕКТ</a
               >
               <a href="/about" class="hero__button hero__button--secondary"
                 >О КОМПАНИИ</a
@@ -113,7 +126,8 @@
           </div>
         </section>
 
-        <section class="services">
+        <!-- СЕКЦИЯ УСЛУГИ БЕЗ ФОТО -->
+        <!-- <section class="services">
           <h2 class="services__title">НАШИ УСЛУГИ</h2>
           <div class="services__grid">
             <a href="/development" class="services__card">
@@ -153,6 +167,29 @@
               </p>
             </a>
           </div>
+        </section> -->
+
+        <!-- СЕКЦИИ УСЛУГИ С ФОТО -->
+        <section class="services-gallery">
+          <h2 class="services-gallery__title">НАШИ УСЛУГИ</h2>
+          <div class="services-gallery__container">
+            <!-- Пример двух изображений -->
+            <div class="services-gallery__item">
+              <img
+                src="/img/service/1.jpg"
+                alt="Разработка сайтов"
+                loading="lazy"
+              />
+            </div>
+            <div class="services-gallery__item">
+              <img
+                src="/img/service/2.jpg"
+                alt="Продвижение сайтов"
+                loading="lazy"
+              />
+            </div>
+            <!-- При добавлении новых они будут появляться ниже -->
+          </div>
         </section>
 
         <section class="promotions">
@@ -161,6 +198,15 @@
             <a href="/services/promotions" class="promotions__all-button"
               >ВСЕ АКЦИИ</a
             >
+          </div>
+
+          <!-- баннер -->
+          <div class="promotions__banner">
+            <img
+              src="/img/promotion/1.jpg"
+              alt="Специальные предложения"
+              class="promotions__banner-image"
+            />
           </div>
 
           <div class="promotions__grid">
@@ -245,7 +291,9 @@
           <p class="cta__description">
             Получите бесплатную консультацию и расчет стоимости
           </p>
-          <a href="/contacts" class="cta__button" data-modal-open>СВЯЗАТЬСЯ С НАМИ</a>
+          <a href="/contacts" class="cta__button" data-modal-open
+            >СВЯЗАТЬСЯ С НАМИ</a
+          >
         </section>
       </main>
     </div>
@@ -256,7 +304,7 @@
           <div class="footer__logo">Спираль</div>
           <p class="footer__slogan">«На грани перемен»</p>
           <p class="footer__description">
-            IT-студия полного цикла разработки и продвижения
+            СТУДИЯ ИТ РАЗРАБОТКИ
           </p>
         </div>
 

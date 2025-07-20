@@ -1,0 +1,229 @@
+/* Баннер контактов (просто изображение) */
+.contacts-banner {
+    width: 100%;
+    // height: 400px;
+    overflow: hidden;
+    margin-bottom: 60px;
+
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        // object-fit: cover;
+        // object-position: center;
+    }
+}
+
+/* Основной контент страницы */
+.contacts-content {
+    padding: 0 20px 60px;
+
+    &__container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-size: 2.5rem;
+        color: var(--color-blue);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    &__subtitle {
+        font-size: 1.25rem;
+        color: var(--color-gray-600);
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+    }
+}
+
+/* Блок с контактной информацией */
+.contacts-info {
+    &__item {
+        display: flex;
+        margin-bottom: 30px;
+    }
+
+    &__icon {
+        font-size: 1.5rem;
+        color: var(--color-orange);
+        margin-right: 20px;
+        margin-top: 13px;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-size: 1.125rem;
+        color: var(--color-blue-dark);
+        margin-bottom: 8px;
+    }
+
+    &__text {
+        color: var(--color-gray-700);
+        line-height: 1.6;
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__social {
+        display: flex;
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    &__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: var(--color-blue);
+        color: var(--color-white);
+        border-radius: 50%;
+        font-size: 1.25rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: var(--color-orange);
+            transform: translateY(-3px);
+        }
+    }
+}
+
+/* Форма обратной связи */
+.contacts-form {
+    background: var(--color-gray-50);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+    &__title {
+        font-size: 1.5rem;
+        color: var(--color-blue);
+        margin-bottom: 25px;
+    }
+}
+
+.contact-form {
+    &__group {
+        margin-bottom: 20px;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--color-gray-700);
+        font-weight: 500;
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--color-gray-300);
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+
+        &:focus {
+            border-color: var(--color-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+        }
+    }
+
+    &__textarea {
+        resize: vertical;
+        min-height: 150px;
+    }
+
+    &__agree {
+        display: flex;
+        align-items: center;
+        margin: 25px 0;
+
+        input {
+            margin-right: 10px;
+        }
+
+        label {
+            color: var(--color-gray-600);
+            font-size: 0.875rem;
+        }
+    }
+
+    &__submit {
+        width: 100%;
+        background: var(--color-orange);
+        color: var(--color-white);
+        border: none;
+        padding: 14px;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: var(--color-blue-dark);
+        }
+    }
+}
+
+/* Блок с картой */
+.contacts-map {
+    width: 100%;
+    height: 450px;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        filter: grayscale(20%);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .contacts-banner {
+        height: 300px;
+        margin-bottom: 40px;
+    }
+
+    .contacts-content {
+        padding-bottom: 40px;
+
+        &__title {
+            font-size: 2rem;
+        }
+
+        &__subtitle {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    .contacts-form {
+        padding: 25px;
+    }
+
+    .contacts-map {
+        height: 350px;
+    }
+}

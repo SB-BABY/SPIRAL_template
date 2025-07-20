@@ -127,3 +127,29 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 });
+
+// Theme Switcher Logic
+document.addEventListener('DOMContentLoaded', function() {
+  const themeButtons = document.querySelectorAll('.theme-switcher__btn');
+  const body = document.body;
+  
+  // Set saved theme or default
+  const savedTheme = localStorage.getItem('theme') || 'default';
+  body.setAttribute('data-theme', savedTheme);
+  
+  // Set active button
+  themeButtons.forEach(btn => {
+    if (btn.dataset.theme === savedTheme) {
+      btn.classList.add('active');
+    }
+    
+    btn.addEventListener('click', function() {
+      const theme = this.dataset.theme;
+      body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      
+      themeButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
