@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Акции - IT-студия «Спираль»</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Стили для барабана */
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid var(--color-blue-dark);
+            box-shadow: 0 0 0 8px var(--color-orange), 0 0 20px rgba(0,0,0,0.3);
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            transform: rotate(0deg);
+        }
+        
+        .wheel-section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .wheel-arrow {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid var(--color-orange);
+            z-index: 10;
+        }
+        
+        .spin-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background: var(--color-orange);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .spin-btn:hover {
+            background: var(--color-blue-dark);
+            transform: scale(1.05);
+        }
+        
+        .spin-btn:disabled {
+            background: var(--color-gray-400);
+            cursor: not-allowed;
+        }
+        
+        /* Стили для акций */
+        .promotion-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--color-orange);
+        }
+        
+        .promotion-title {
+            color: var(--color-blue-dark);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .promotion-description {
+            color: var(--color-gray-700);
+            margin-bottom: 15px;
+        }
+        
+        .promotion-expired {
+            background: var(--color-gray-100);
+            opacity: 0.7;
+        }
+        
+        .promotion-expired .promotion-title {
+            color: var(--color-gray-500);
+        }
+        
+        .promotion-expired .promotion-description {
+            color: var(--color-gray-500);
+        }
+        
+        .expired-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--color-gray-300);
+            color: var(--color-gray-700);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .wheel-result {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: var(--color-blue-dark);
+            min-height: 27px;
+        }
+        
+        .promotion-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .promotion-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="page">
+    <header class="header">
+        <div class="header__container">
+            <a href="index.html" class="header__logo">
+                <img src="./img/logo-full-bold.png" alt="">
+            </a>
+
+            <nav class="header__nav header__nav--desktop">
+                <a href="/about" class="header__nav-item">О КОМПАНИИ</a>
+                <a href="/development" class="header__nav-item">РАЗРАБОТКА</a>
+                <a href="/promotion" class="header__nav-item">ПРОДВИЖЕНИЕ</a>
+                <a href="/reconstruction" class="header__nav-item">РЕКОНСТРУКЦИЯ</a>
+                <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
+                <a href="/contact.html" class="header__nav-item">КОНТАКТЫ</a>
+            </nav>
+
+            <button class="header__menu-button">
+                <i class="ri-menu-line header__menu-icon"></i>
+            </button>
+        </div>
+
+        <nav class="header__nav header__nav--mobile">
+            <a href="/about" class="header__nav-item">О КОМПАНИИ</a>
+            <a href="/development" class="header__nav-item">РАЗРАБОТКА</a>
+            <a href="/promotion" class="header__nav-item">ПРОДВИЖЕНИЕ</a>
+            <a href="/reconstruction" class="header__nav-item">РЕКОНСТРУКЦИЯ</a>
+            <a href="/sales" class="header__nav-item">ПРОДАЖА</a>
+            <a href="/contacts" class="header__nav-item">КОНТАКТЫ</a>
+        </nav>
+
+        <div class="theme-switcher">
+            <button class="theme-switcher__btn" data-theme="gray">Серый</button>
+            <button class="theme-switcher__btn" data-theme="coffee">Кофе</button>
+            <button class="theme-switcher__btn" data-theme="red">Красный</button>
+            <button class="theme-switcher__btn" data-theme="graphite">Графит</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar__content">
+                <h3 class="sidebar__title">УСЛУГИ</h3>
+                <nav class="sidebar__nav">
+                    <a href="yandex-direct.html" class="sidebar__nav-item">НАСТРОЙКА ЯНДЕКС</a>
+                    <a href="add-page.html" class="sidebar__nav-item">ДОБАВЛЕНИЕ СТРАНИЦ</a>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="main">
+            <section class="service-hero">
+                <div class="service-hero__overlay"></div>
+                <div class="service-hero__content">
+                    <h1 class="service-hero__title">АКЦИИ И СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</h1>
+                    <p class="service-hero__description">
+                        Настоящая страница посвящена акциям на все наши услуги которые могут быть Вам интересны. 
+                        Наши акции ограничены по времени и если Вам повезет вы успеете получить дополнительный 
+                        бонус на любую услугу из нашего каталога услуг.
+                    </p>
+                </div>
+            </section>
+
+            <div class="service-page-container">
+                <div class="service-content">
+                    <div class="promotion-grid">
+                        <!-- Акция с барабаном - Разработка сайта -->
+                        <div class="promotion-card">
+                            <h2 class="promotion-title">РАЗРАБОТКА САЙТА</h2>
+                            <p class="promotion-description">
+                                Крутите барабан и получите случайную скидку на разработку сайта!
+                                Скидка действует при заказе в течение 3 дней после розыгрыша.
+                            </p>
+                            
+                            <div class="wheel-container">
+                                <div class="wheel" id="developmentWheel"></div>
+                                <div class="wheel-arrow"></div>
+                            </div>
+                            
+                            <button class="spin-btn" id="spinDevelopmentBtn">КРУТИ БАРАБАН</button>
+                            <div class="wheel-result" id="developmentResult"></div>
+                        </div>
+
+                        <!-- Акция с барабаном - Покупка готового сайта -->
+                        <div class="promotion-card">
+                            <h2 class="promotion-title">ПОКУПКА ГОТОВОГО САЙТА</h2>
+                            <p class="promotion-description">
+                                Крутите барабан и получите случайную скидку на покупку готового сайта!
+                                Скидка действует при заказе в течение 3 дней после розыгрыша.
+                            </p>
+                            
+                            <div class="wheel-container">
+                                <div class="wheel" id="salesWheel"></div>
+                                <div class="wheel-arrow"></div>
+                            </div>
+                            
+                            <button class="spin-btn" id="spinSalesBtn">КРУТИ БАРАБАН</button>
+                            <div class="wheel-result" id="salesResult"></div>
+                        </div>
+
+                        <!-- Акция на продвижение (завершена) -->
+                        <div class="promotion-card promotion-expired">
+                            <h2 class="promotion-title">
+                                ПРОДВИЖЕНИЕ САЙТА
+                                <span class="expired-badge">АКЦИЯ ЗАВЕРШЕНА</span>
+                            </h2>
+                            <p class="promotion-description">
+                                ПОЛУЧИ СКИДКУ 30% оформив заявку до 01.05.2025
+                            </p>
+                        </div>
+
+                        <!-- Акция на разработку логотипа -->
+                        <div class="promotion-card">
+                            <h2 class="promotion-title">АКЦИЯ: РАЗРАБОТКА ЛОГОТИПА</h2>
+                            <p class="promotion-description">
+                                Успей получить дополнительный бесплатный дизайн при заказе до 10 Июня 2025 года.
+                                При заказе разработки логотипа - бесплатный дизайн визитки или фирменного бланка.
+                            </p>
+                        </div>
+
+                        <!-- Акция на бесплатное продвижение -->
+                        <div class="promotion-card">
+                            <h2 class="promotion-title">АКЦИЯ: БЕСПЛАТНОЕ ПРОДВИЖЕНИЕ</h2>
+                            <p class="promotion-description">
+                                При приобретении пакета продвижение сайта 6+ месяцев, получите 1 месяц продвижения дополнительно бесплатно.
+                                Акция действует до 31 декабря 2025 года.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="service-sidebar">
+                    <!-- Contact Widget -->
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget__header">
+                            <i class="ri-phone-line sidebar-widget__icon"></i>
+                            <h3 class="sidebar-widget__title">Контакты</h3>
+                        </div>
+                        <div class="sidebar-widget__content">
+                            <div class="contact-info">
+                                <div class="contact-info__item">
+                                    <i class="ri-map-pin-line contact-info__icon"></i>
+                                    <span class="contact-info__text">г. Москва, ул. Технологическая, 10</span>
+                                </div>
+                                <div class="contact-info__item">
+                                    <i class="ri-phone-line contact-info__icon"></i>
+                                    <a href="tel:+79991234567" class="contact-info__link">+7 (999) 123-45-67</a>
+                                </div>
+                                <div class="contact-info__item">
+                                    <i class="ri-mail-line contact-info__icon"></i>
+                                    <a href="mailto:info@spiral-studio.ru" class="contact-info__link">info@spiral-studio.ru</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Callback Form Widget -->
+                    <div class="sidebar-widget sidebar-widget--highlight">
+                        <div class="sidebar-widget__header">
+                            <i class="ri-chat-1-line sidebar-widget__icon"></i>
+                            <h3 class="sidebar-widget__title">Обратный звонок</h3>
+                        </div>
+                        <div class="sidebar-widget__content">
+                            <form class="sidebar-form">
+                                <div class="sidebar-form__group">
+                                    <input type="text" class="sidebar-form__input" placeholder="Ваше имя" required>
+                                </div>
+                                <div class="sidebar-form__group">
+                                    <input type="tel" class="sidebar-form__input" placeholder="Телефон" required>
+                                </div>
+                                <button type="submit" class="sidebar-form__submit">Заказать звонок</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__column">
+                <div class="footer__logo">Спираль</div>
+                <p class="footer__slogan">«На грани перемен»</p>
+                <p class="footer__description">
+                    СТУДИЯ ИТ РАЗРАБОТКИ
+                </p>
+            </div>
+
+            <div class="footer__column">
+                <h4 class="footer__column-title">КОНТАКТЫ</h4>
+                <div class="footer__contacts">
+                    <p>+7 (999) 123-45-67</p>
+                    <p>info@spiral-studio.ru</p>
+                    <p>г. Москва, ул. Технологическая, 10</p>
+                </div>
+            </div>
+
+            <div class="footer__column">
+                <h4 class="footer__column-title">СОЦИАЛЬНЫЕ СЕТИ</h4>
+                <div class="footer__social">
+                    <a href="#" class="footer__social-link">
+                        <i class="ri-telegram-line"></i>
+                    </a>
+                    <a href="#" class="footer__social-link">
+                        <i class="ri-vk-line"></i>
+                    </a>
+                    <a href="#" class="footer__social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__copyright">
+            <p>&copy; 2024 IT-студия «Спираль». Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для создания колеса
+        function createWheel(wheelId, sections) {
+            const wheel = document.getElementById(wheelId);
+            wheel.innerHTML = '';
+            
+            const angle = 360 / sections.length;
+            const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'];
+            
+            sections.forEach((section, index) => {
+                const sectionElement = document.createElement('div');
+                sectionElement.className = 'wheel-section';
+                sectionElement.textContent = section.text;
+                sectionElement.style.transform = `rotate(${angle * index}deg)`;
+                sectionElement.style.background = colors[index % colors.length];
+                sectionElement.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%)';
+                wheel.appendChild(sectionElement);
+            });
+            
+            return {
+                spin: function(callback) {
+                    const spinDegrees = 360 * 5 + Math.floor(Math.random() * 360);
+                    wheel.style.transform = `rotate(${-spinDegrees}deg)`;
+                    
+                    setTimeout(() => {
+                        const normalizedDegrees = spinDegrees % 360;
+                        const sectionIndex = Math.floor(normalizedDegrees / angle);
+                        const selectedSection = sections[(sections.length - 1 - sectionIndex) % sections.length];
+                        callback(selectedSection);
+                    }, 4000);
+                }
+            };
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Секции для барабана разработки сайта
+            const developmentSections = [
+                { text: 'СКИДКА 15%', value: 15 },
+                { text: 'СКИДКА 20%', value: 20 },
+                { text: 'СКИДКА 30%', value: 30 },
+                { text: 'СКИДКА 40%', value: 40 }
+            ];
+            
+            // Секции для барабана покупки сайта
+            const salesSections = [
+                { text: 'СКИДКА 15%', value: 15 },
+                { text: 'СКИДКА 20%', value: 20 },
+                { text: 'СКИДКА 30%', value: 30 },
+                { text: 'СКИДКА 40%', value: 40 }
+            ];
+            
+            // Создаем барабаны
+            const developmentWheel = createWheel('developmentWheel', developmentSections);
+            const salesWheel = createWheel('salesWheel', salesSections);
+            
+            // Обработчики кнопок
+            document.getElementById('spinDevelopmentBtn').addEventListener('click', function() {
+                this.disabled = true;
+                developmentWheel.spin(function(result) {
+                    document.getElementById('developmentResult').textContent = 
+                        `Поздравляем! Вы получили скидку ${result.value}% на разработку сайта!`;
+                    document.getElementById('spinDevelopmentBtn').disabled = false;
+                });
+            });
+            
+            document.getElementById('spinSalesBtn').addEventListener('click', function() {
+                this.disabled = true;
+                salesWheel.spin(function(result) {
+                    document.getElementById('salesResult').textContent = 
+                        `Поздравляем! Вы получили скидку ${result.value}% на покупку готового сайта!`;
+                    document.getElementById('spinSalesBtn').disabled = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
